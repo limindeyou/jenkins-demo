@@ -65,7 +65,10 @@ pipeline{
                     }
                     steps {
 			container('kubectl') {
-				step([$class: 'KubernetesDeploy', authMethod: 'certs', apiServerUrl: '$API_SERVER_URL', credentialsId:'k8sCertAuth', config: 'deployment.yaml',variableState: 'ORIGIN_REPO,REPO,IMAGE_TAG'])
+				step(){
+					sh "sleep 10000"
+				}
+				//step([$class: 'KubernetesDeploy', authMethod: 'certs', apiServerUrl: '$API_SERVER_URL', credentialsId:'k8sCertAuth', config: 'deployment.yaml',variableState: 'ORIGIN_REPO,REPO,IMAGE_TAG'])
 			}
                     }
                 }
